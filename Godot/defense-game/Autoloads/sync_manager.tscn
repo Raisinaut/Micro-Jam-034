@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ubaxuj38erto"]
+
+[ext_resource type="Script" path="res://Autoloads/sync_manager.gd" id="1_2rvek"]
+
+[node name="SyncManager" type="Node"]
+script = ExtResource("1_2rvek")
+interval_length = null
+
+[node name="Timer" type="Timer" parent="."]
