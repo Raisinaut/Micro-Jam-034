@@ -1,4 +1,4 @@
-extends Node2D
+extends GridObject
 
 @export var progress_curve : Curve
 

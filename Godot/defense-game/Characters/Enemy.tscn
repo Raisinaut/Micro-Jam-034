@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Characters/enemy.gd" id="1_0wd4x"]
 [ext_resource type="Texture2D" uid="uid://ct2trv2mxr0my" path="res://icon.svg" id="2_wtbre"]
 
-[node name="GridCharacter" type="Node2D"]
+[node name="Enemy" type="Node2D"]
 script = ExtResource("1_0wd4x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

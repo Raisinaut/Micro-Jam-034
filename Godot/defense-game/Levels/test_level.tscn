@@ -10,11 +10,11 @@
 [node name="GridNode" parent="." instance=ExtResource("1_22lwh")]
 position = Vector2(240, 176)
 
+[node name="Hourglass" parent="GridNode" instance=ExtResource("1_giacu")]
+position = Vector2(0, 0)
+
 [node name="Player" parent="GridNode" instance=ExtResource("2_pp4ul")]
 position = Vector2(128, -32)
 
-[node name="GridCharacter" parent="GridNode" instance=ExtResource("3_p6at6")]
+[node name="Enemy" parent="GridNode" instance=ExtResource("3_p6at6")]
 position = Vector2(-224, -160)
-
-[node name="Hourglass" parent="." instance=ExtResource("1_giacu")]
-position = Vector2(240, 176)

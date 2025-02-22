@@ -6,11 +6,11 @@ extends Node2D
 
 func _ready() -> void:
 	for child in get_children():
-		if child is GridCharacter:
+		if child is GridObject:
 			child.initialize_grid(self)
 
 func get_grid_position(grid_position: Vector2):
 	for child in get_children():
-		if child is GridCharacter && child.grid_position == grid_position:
+		if child is GridObject && child.grid_position == grid_position:
 			return child
 	return null
