@@ -10,7 +10,7 @@ extends Node2D
 
 @onready var sand_frame_count = sand_top.hframes
 var sand_idx = 0 : set = set_sand_idx
-var max_ticks = 10
+var max_ticks = 15
 var tick_count = 0
 
 
