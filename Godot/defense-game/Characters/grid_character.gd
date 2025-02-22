@@ -1,24 +1,36 @@
 class_name GridCharacter
 extends Node2D
 
-var _grid_step = 100
-var _grid_origin = Vector2(0,0)
-var _grid_position = Vector2(0,0)
-var move_direction = Vector2(0,0)
+var _grid = null
+
+var grid_position = Vector2.ZERO
+var move_direction = Vector2.ZERO
+
+func initialize_grid(grid: GridNode):
+	_grid = grid
+	grid_position = round((position - _grid.grid_origin) / _grid.grid_step)
+	_update_position(1)
 
 func _process(delta: float) -> void:
-	move()
-	update_position(delta)
+	_move()
+	_update_position(delta)
 
-func move():
-	_grid_position += move_direction
+func _move():
+	if !_grid.get_grid_position(grid_position + move_direction):
+		grid_position += move_direction
+	else:
+		_bonk(move_direction)
 	move_direction = Vector2.ZERO
 
-func update_position(delta: float):
-	position = lerp(position, (_grid_position * _grid_step) + _grid_origin, delta * 20)
+func _bonk(direction: Vector2):
+	if direction == Vector2.ZERO: return
+	var bonk = direction * _grid.grid_step * 0.1
+	var t = create_tween()
+	t.tween_property(self, 'position', _actual_position() + bonk, 0.05)
+	t.tween_property(self, 'position', _actual_position(), 0.05)
 
-func initialize_grid(grid_size: float, grid_origin: Vector2):
-	_grid_step = grid_size
-	_grid_origin = grid_origin
-	_grid_position = round((position - _grid_origin) / _grid_step)
-	update_position(1)
+func _actual_position():
+	return (grid_position * _grid.grid_step) + _grid.grid_origin
+
+func _update_position(delta: float):
+	position = lerp(position, _actual_position(), delta * 20)
