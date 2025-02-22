@@ -20,5 +20,5 @@ func update_position(delta: float):
 func initialize_grid(grid_size: float, grid_origin: Vector2):
 	_grid_step = grid_size
 	_grid_origin = grid_origin
-	_grid_position = (position - _grid_origin) / _grid_step
+	_grid_position = round((position - _grid_origin) / _grid_step)
 	update_position(0)
