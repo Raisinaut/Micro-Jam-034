@@ -9,3 +9,4 @@ grid_size = 32.0
 grid_origin = Vector2(240, 180)
 
 [node name="GridCharacter" parent="." instance=ExtResource("2_imh73")]
+position = Vector2(384, 192)
