@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brrb85jfiiqh8"]
+[gd_scene load_steps=4 format=3 uid="uid://brrb85jfiiqh8"]
 
 [ext_resource type="Script" path="res://Characters/grid_node.gd" id="1_3nexw"]
 [ext_resource type="PackedScene" uid="uid://behdr5su2x6fw" path="res://Characters/GridCharacter.tscn" id="2_imh73"]
+[ext_resource type="PackedScene" uid="uid://cynt0mxgo2qeh" path="res://Characters/Player.tscn" id="3_rrbst"]
 
 [node name="GridNode" type="Node2D"]
 script = ExtResource("1_3nexw")
@@ -10,3 +11,6 @@ grid_origin = Vector2(240, 180)
 
 [node name="GridCharacter" parent="." instance=ExtResource("2_imh73")]
 position = Vector2(384, 192)
+
+[node name="Player" parent="." instance=ExtResource("3_rrbst")]
+position = Vector2(64, 96)
