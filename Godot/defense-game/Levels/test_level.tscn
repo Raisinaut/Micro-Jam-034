@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi6yinnbs0asm"]
+[gd_scene load_steps=5 format=3 uid="uid://bi6yinnbs0asm"]
 
 [ext_resource type="PackedScene" uid="uid://brrb85jfiiqh8" path="res://Characters/GridNode.tscn" id="1_22lwh"]
 [ext_resource type="PackedScene" uid="uid://b076w8dhkuj4u" path="res://Objects/hourglass.tscn" id="1_giacu"]
 [ext_resource type="PackedScene" uid="uid://cynt0mxgo2qeh" path="res://Characters/Player.tscn" id="2_pp4ul"]
+[ext_resource type="PackedScene" uid="uid://wtn4fmhb7hic" path="res://Characters/Enemy.tscn" id="3_p6at6"]
 
 [node name="World" type="Node2D"]
 
@@ -12,6 +13,9 @@ grid_size = 32.0
 
 [node name="Player" parent="GridNode" instance=ExtResource("2_pp4ul")]
 position = Vector2(128, -32)
+
+[node name="GridCharacter" parent="GridNode" instance=ExtResource("3_p6at6")]
+position = Vector2(-224, -160)
 
 [node name="Hourglass" parent="." instance=ExtResource("1_giacu")]
 position = Vector2(240, 176)
