@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://bi6yinnbs0asm"]
+[gd_scene load_steps=2 format=3 uid="uid://bi6yinnbs0asm"]
+
+[ext_resource type="PackedScene" uid="uid://b076w8dhkuj4u" path="res://Objects/hourglass.tscn" id="1_giacu"]
 
 [node name="World" type="Node2D"]
+
+[node name="Hourglass" parent="." instance=ExtResource("1_giacu")]
+position = Vector2(240, 180)

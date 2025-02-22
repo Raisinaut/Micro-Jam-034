@@ -4,6 +4,5 @@
 
 [node name="SyncManager" type="Node"]
 script = ExtResource("1_2rvek")
-interval_length = null
 
 [node name="Timer" type="Timer" parent="."]

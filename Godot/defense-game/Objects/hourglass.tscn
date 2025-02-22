@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b076w8dhkuj4u"]
+
+[ext_resource type="Texture2D" uid="uid://bbywsd1fx2n5f" path="res://Textures/Objects/hourglass/hourglass_glass.png" id="1_erilt"]
+[ext_resource type="Script" path="res://Objects/hourglass.gd" id="1_i17mv"]
+[ext_resource type="Texture2D" uid="uid://cslm3btdx7lw4" path="res://Textures/Objects/hourglass/hourglass_sand.png" id="1_x8v8c"]
+
+[sub_resource type="Animation" id="Animation_krryx"]
+resource_name = "flip"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kk0o"]
+_data = {
+"flip": SubResource("Animation_krryx")
+}
+
+[node name="Hourglass" type="Node2D"]
+script = ExtResource("1_i17mv")
+
+[node name="Glass" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_erilt")
+
+[node name="SandTop" type="Sprite2D" parent="Glass"]
+texture_filter = 1
+texture = ExtResource("1_x8v8c")
+hframes = 10
+vframes = 3
+
+[node name="SandBottom" type="Sprite2D" parent="Glass"]
+texture_filter = 1
+texture = ExtResource("1_x8v8c")
+hframes = 10
+vframes = 3
+frame = 10
+
+[node name="SandDrip" type="Sprite2D" parent="Glass"]
+visible = false
+texture_filter = 1
+texture = ExtResource("1_x8v8c")
+hframes = 10
+vframes = 3
+frame = 20
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0kk0o")
+}

@@ -1,5 +1,7 @@
 extends Node
 
+signal tick
+
 @onready var timer = $Timer
 
 @export var interval_length = 0.2 # seconds
@@ -8,7 +10,4 @@ extends Node
 func _ready() -> void:
 	timer.wait_time = interval_length
 	timer.start()
-
-func beat():
-	beat.emit()
-	await get_tree().create_timer(interval_length).timeout
+	timer.timeout.connect(tick.emit)
