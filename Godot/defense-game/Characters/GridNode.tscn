@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://brrb85jfiiqh8"]
+
+[ext_resource type="Script" path="res://Characters/grid_node.gd" id="1_3nexw"]
+[ext_resource type="PackedScene" uid="uid://behdr5su2x6fw" path="res://Characters/GridCharacter.tscn" id="2_imh73"]
+
+[node name="GridNode" type="Node2D"]
+script = ExtResource("1_3nexw")
+grid_size = 32.0
+grid_origin = Vector2(240, 180)
+
+[node name="GridCharacter" parent="." instance=ExtResource("2_imh73")]
