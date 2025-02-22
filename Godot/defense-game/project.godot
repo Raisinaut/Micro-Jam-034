@@ -24,7 +24,7 @@ SyncManager="*res://Autoloads/sync_manager.tscn"
 window/size/viewport_width=480
 window/size/viewport_height=320
 window/size/window_width_override=960
-window/size/window_height_override=720
+window/size/window_height_override=640
 window/stretch/mode="canvas_items"
 
 [input]

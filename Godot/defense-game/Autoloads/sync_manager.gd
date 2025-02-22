@@ -4,7 +4,7 @@ signal tick
 
 @onready var timer = $Timer
 
-@export var interval_length = 0.2 # seconds
+@export var interval_length = 1.0 # seconds
 
 
 func _ready() -> void:

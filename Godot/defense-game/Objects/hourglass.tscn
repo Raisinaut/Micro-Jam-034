@@ -1,8 +1,81 @@
-[gd_scene load_steps=9 format=3 uid="uid://b076w8dhkuj4u"]
+[gd_scene load_steps=19 format=3 uid="uid://b076w8dhkuj4u"]
 
 [ext_resource type="Texture2D" uid="uid://bbywsd1fx2n5f" path="res://Textures/Objects/hourglass/hourglass_glass.png" id="1_erilt"]
 [ext_resource type="Script" path="res://Objects/hourglass.gd" id="1_i17mv"]
 [ext_resource type="Texture2D" uid="uid://cslm3btdx7lw4" path="res://Textures/Objects/hourglass/hourglass_sand.png" id="1_x8v8c"]
+
+[sub_resource type="Curve" id="Curve_gfevy"]
+_data = [Vector2(0, 0), 0.0, 0.197314, 0, 0, Vector2(1, 1), 2.1405, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scxj0"]
+atlas = ExtResource("1_x8v8c")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3s6y"]
+atlas = ExtResource("1_x8v8c")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvgdr"]
+atlas = ExtResource("1_x8v8c")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prne3"]
+atlas = ExtResource("1_x8v8c")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suukn"]
+atlas = ExtResource("1_x8v8c")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emlof"]
+atlas = ExtResource("1_x8v8c")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80nfp"]
+atlas = ExtResource("1_x8v8c")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d3cc"]
+atlas = ExtResource("1_x8v8c")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fntn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scxj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3s6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvgdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prne3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suukn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emlof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80nfp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d3cc")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_vrw7l"]
 length = 0.001
@@ -51,7 +124,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(3, -0.166667, 0.100005, 0.0999999, 0.100901, 3.142, -0.0666666, -0.0148706, 0, 0),
+"points": PackedFloat32Array(-0.1, -0.166667, 0.100005, 0.0999999, 0.100901, 0, -0.0666666, -0.0148706, 0, 0),
 "times": PackedFloat32Array(0, 0.2)
 }
 
@@ -92,7 +165,9 @@ _data = {
 size = Vector2(32, 32)
 
 [node name="Hourglass" type="Node2D"]
+position = Vector2(245, 166)
 script = ExtResource("1_i17mv")
+progress_curve = SubResource("Curve_gfevy")
 
 [node name="Offset" type="Node2D" parent="."]
 
@@ -113,13 +188,10 @@ hframes = 10
 vframes = 3
 frame = 10
 
-[node name="SandDrip" type="Sprite2D" parent="Offset/Glass"]
-visible = false
+[node name="SandDrip" type="AnimatedSprite2D" parent="Offset/Glass"]
 texture_filter = 1
-texture = ExtResource("1_x8v8c")
-hframes = 10
-vframes = 3
-frame = 20
+sprite_frames = SubResource("SpriteFrames_3fntn")
+frame_progress = 0.716936
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

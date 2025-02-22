@@ -1,28 +1,38 @@
 extends Node2D
 
+@export var progress_curve : Curve
+
 @onready var glass = $Offset/Glass
 @onready var sand_top = $Offset/Glass/SandTop
 @onready var sand_bottom = $Offset/Glass/SandBottom
 @onready var sand_drip = $Offset/Glass/SandDrip
 @onready var animator = $AnimationPlayer
 
-@onready var frame_count = sand_top.hframes
-
+@onready var sand_frame_count = sand_top.hframes
 var sand_idx = 0 : set = set_sand_idx
+var max_ticks = 10
+var tick_count = 0
 
 
 func _ready() -> void:
-	SyncManager.tick.connect(progress_sand)
+	sand_drip.play("default")
+	SyncManager.tick.connect(_on_tick)
 
-func progress_sand():
-	if sand_idx >= frame_count-1:
+func _on_tick():
+	tick_count += 1
+	var tick_progress = remap(tick_count, 0, max_ticks, 0, 1)
+	var curved_progress = progress_curve.sample(tick_progress)
+	sand_idx = lerp(0, sand_frame_count-1, curved_progress)
+	animator.play("bump")
+	if tick_count >= max_ticks:
 		flip()
-		return
-	sand_idx += 1
+		tick_count = 0
 
 func flip():
+	sand_drip.play("stop")
 	animator.play("flip")
 	await animator.animation_finished
+	sand_drip.play("default")
 	glass.rotation = 0
 	sand_idx = 0
 
