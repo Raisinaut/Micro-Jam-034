@@ -1,8 +1,59 @@
-[gd_scene load_steps=7 format=3 uid="uid://b076w8dhkuj4u"]
+[gd_scene load_steps=9 format=3 uid="uid://b076w8dhkuj4u"]
 
 [ext_resource type="Texture2D" uid="uid://bbywsd1fx2n5f" path="res://Textures/Objects/hourglass/hourglass_glass.png" id="1_erilt"]
 [ext_resource type="Script" path="res://Objects/hourglass.gd" id="1_i17mv"]
 [ext_resource type="Texture2D" uid="uid://cslm3btdx7lw4" path="res://Textures/Objects/hourglass/hourglass_sand.png" id="1_x8v8c"]
+
+[sub_resource type="Animation" id="Animation_vrw7l"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Offset/Glass:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Offset/Glass:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_80tlq"]
+resource_name = "bump"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Offset/Glass:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, -0.5, -0.05, 0, 0.05, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Offset/Glass:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(3, -0.166667, 0.100005, 0.0999999, 0.100901, 3.142, -0.0666666, -0.0148706, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
 
 [sub_resource type="Animation" id="Animation_krryx"]
 resource_name = "flip"
@@ -10,7 +61,7 @@ length = 1.4
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Glass:position:y")
+tracks/0/path = NodePath("Offset/Glass:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +72,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Glass:rotation")
+tracks/1/path = NodePath("Offset/Glass:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -30,58 +81,39 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.8, 1.2, 1.4)
 }
 
-[sub_resource type="Animation" id="Animation_vrw7l"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Glass:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Glass:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0kk0o"]
 _data = {
 "RESET": SubResource("Animation_vrw7l"),
+"bump": SubResource("Animation_80tlq"),
 "flip": SubResource("Animation_krryx")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qob5x"]
+size = Vector2(32, 32)
 
 [node name="Hourglass" type="Node2D"]
 script = ExtResource("1_i17mv")
 
-[node name="Glass" type="Sprite2D" parent="."]
+[node name="Offset" type="Node2D" parent="."]
+
+[node name="Glass" type="Sprite2D" parent="Offset"]
 texture_filter = 1
 texture = ExtResource("1_erilt")
 
-[node name="SandTop" type="Sprite2D" parent="Glass"]
+[node name="SandTop" type="Sprite2D" parent="Offset/Glass"]
 texture_filter = 1
 texture = ExtResource("1_x8v8c")
 hframes = 10
 vframes = 3
 
-[node name="SandBottom" type="Sprite2D" parent="Glass"]
+[node name="SandBottom" type="Sprite2D" parent="Offset/Glass"]
 texture_filter = 1
 texture = ExtResource("1_x8v8c")
 hframes = 10
 vframes = 3
 frame = 10
 
-[node name="SandDrip" type="Sprite2D" parent="Glass"]
+[node name="SandDrip" type="Sprite2D" parent="Offset/Glass"]
 visible = false
 texture_filter = 1
 texture = ExtResource("1_x8v8c")
@@ -94,3 +126,8 @@ libraries = {
 "": SubResource("AnimationLibrary_0kk0o")
 }
 speed_scale = 2.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_qob5x")

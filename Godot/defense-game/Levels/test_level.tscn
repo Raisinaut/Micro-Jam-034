@@ -5,4 +5,4 @@
 [node name="World" type="Node2D"]
 
 [node name="Hourglass" parent="." instance=ExtResource("1_giacu")]
-position = Vector2(240, 180)
+position = Vector2(128, 96)
